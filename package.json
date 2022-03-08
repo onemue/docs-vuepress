@@ -1,0 +1,24 @@
+{
+  "name": "doc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "deploy-gh": "npm run docs:build && bash scripts/deploy-gh.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vuepress": "^1.9.7",
+    "vuepress-plugin-autobar": "github:boboidream/vuepress-bar",
+    "vuepress-plugin-fulltext-search": "^2.2.1",
+    "vuepress-plugin-permalink-pinyin": "^1.0.0"
+  },
+  "dependencies": {
+    "directory-tree": "^3.2.2"
+  }
+}

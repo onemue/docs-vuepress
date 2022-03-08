@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Loop</title>
+
+</head>
+<body>
+   <div id="button">按钮</div>
+</body>
+<script async>
+
+  let button = document.getElementById('button');
+  button.addEventListener('click', ()=>{
+    console.log('click event');
+  })
+
+  console.log('[宏任务]console-B'); // 1
+
+  setTimeout(e=>{ 
+    console.log('[宏任务]setTimeout-B-B'); // 5
+    Promise.resolve()
+    .then(function () {
+      console.log('[微任务]promise-setTimeout-B'); // 7
+    })
+    .then(function () {
+      console.log('[微任务]promise-setTimeout-A'); // 8
+    });
+    console.log('[宏任务]setTimeout-B-A'); // 6
+  }, 0);
+
+  Promise.resolve()
+  .then(function () {
+    console.log('[微任务]promise-B'); // 3
+  })
+  .then(function () {
+    console.log('[微任务]promise-A'); // 4
+  });
+  setTimeout(e=>{ console.log('[宏任务]setTimeout-30s') }, 30000); // 10
+
+  setTimeout(e=>{ console.log('[宏任务]setTimeout-A') }, 0); // 9
+
+  console.log('[宏任务]console-A'); // 2
+</script>
+</html>
